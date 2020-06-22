@@ -1,6 +1,6 @@
 from django.db import models
 import re
-from datetime import datetime
+from datetime import datetime, date
 import bcrypt
 
 
@@ -46,13 +46,14 @@ class TripManager(models.Manager):
         if len(postData['plan']) < 3 or postData['plan'] == " ":
             errors["plan"] = "Plan can not be empty and it should be at least 3 characters"
         # Start date must be in the future and end date should be after the start date
-        start_date = datetime.strptime(postData['start_date'], '%Y-%m-%d')
-        end_date = datetime.strptime(postData['end_date'], '%Y-%m-%d')
-        if postData['start_date'] == "" or postData['end_date'] == "" :
+        
+        if postData['start_date'] == "" or  postData['end_date']=="" :
             errors['start_date'] = "Start date or end date can not be empty!" 
-        if start_date < datetime.now():
+        
+       
+        if postData['start_date'] < str(date.today()):
             errors['start_date'] = "Start date must be in the future"
-        if start_date > end_date:
+        if postData['start_date'] > postData['end_date']:
             errors['end_date'] = 'End date should be after the start date'
             
         return errors
