@@ -8,4 +8,4 @@ MarkupSafe==1.0
 pycparser==2.20
 pytz==2020.1
 six==1.15.0
-Werkzeug==0.14.1
+Werkzeug==0.15.5
